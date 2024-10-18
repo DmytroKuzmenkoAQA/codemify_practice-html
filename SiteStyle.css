@@ -1,73 +1,85 @@
    .content {
-    padding: 40px;
+       padding: 40px;
    }
-   
+
    .image {
-    float:left;
-    width: 200px;
-  }
-  .text {
-    font-size: 40px;
-    text-align: center;
-    color: rgb(255, 255, 255);
-  }
-  .summary {
-    color: rgb(255, 255, 255);
-    padding-left: 220px;
-  }
-body {
-    background: -webkit-linear-gradient(-45deg, #35577D, #141E30);
-    background: linear-gradient(-45deg, #35577D, #141E30);
-    margin: 0;
-    padding: 0;
-  }
-.WorkExperience{
-    color: rgb(255, 255, 255);
-    border-bottom-style:groove;
-    padding-left: 40px;
-    font-size: 30px;
-}
-.TitleTiger {
-    color: rgb(255, 255, 255);
-    padding-left: 40px;
-    padding-right: 40px;
-    font-size: 20px;
-}
-.TigerDuty {
-    color: rgb(255, 255, 255);
-    padding-left: 40px;
-    font-size: 18px;
-}
-.TitleIntellect {
-    color: rgb(255, 255, 255);
-    padding-left: 40px;
-    padding-right: 40px;
-    font-size: 20px;
-}
-.TitleBelive {
-    color: rgb(255, 255, 255);
-    padding-left: 40px;
-    padding-right: 40px;
-    font-size: 20px;
-}
-.BeliveDuty {
-    color: rgb(255, 255, 255);
-    padding-left: 40px;
-    font-size: 18px;
-}
-.Link {
-    padding-left: 40px;
-    font-size: 18px;
-}
-.Skills {
-    color: rgb(255, 255, 255);
-    border-bottom-style:groove;
-    padding-left: 40px;
-    font-size: 30px;
-}
-.skillsset {
-    color: rgb(255, 255, 255);
-    padding-left: 40px;
-    font-size: 18px;
-    padding-bottom: 40px;
-}
+       float: left;
+       width: 200px;
+   }
+
+   .text {
+       font-size: 40px;
+       text-align: center;
+       color: rgb(255, 255, 255);
+   }
+
+   .summary {
+       color: rgb(255, 255, 255);
+       padding-left: 220px;
+   }
+
+   body {
+       background: -webkit-linear-gradient(-45deg, #35577D, #141E30);
+       background: linear-gradient(-45deg, #35577D, #141E30);
+       margin: 0;
+       padding: 0;
+   }
+
+   .WorkExperience {
+       color: rgb(255, 255, 255);
+       border-bottom-style: groove;
+       padding-left: 40px;
+       font-size: 30px;
+   }
+
+   .TitleTiger {
+       color: rgb(255, 255, 255);
+       padding-left: 40px;
+       padding-right: 40px;
+       font-size: 20px;
+   }
+
+   .TigerDuty {
+       color: rgb(255, 255, 255);
+       padding-left: 40px;
+       font-size: 18px;
+   }
+
+   .TitleIntellect {
+       color: rgb(255, 255, 255);
+       padding-left: 40px;
+       padding-right: 40px;
+       font-size: 20px;
+   }
+
+   .TitleBelive {
+       color: rgb(255, 255, 255);
+       padding-left: 40px;
+       padding-right: 40px;
+       font-size: 20px;
+   }
+
+   .BeliveDuty {
+       color: rgb(255, 255, 255);
+       padding-left: 40px;
+       font-size: 18px;
+   }
+
+   .Link {
+       padding-left: 40px;
+       font-size: 18px;
+   }
+
+   .Skills {
+       color: rgb(255, 255, 255);
+       border-bottom-style: groove;
+       padding-left: 40px;
+       font-size: 30px;
+   }
+
+   .skillsset {
+       color: rgb(255, 255, 255);
+       padding-left: 40px;
+       font-size: 18px;
+       padding-bottom: 40px;
+   }
