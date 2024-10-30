@@ -49,8 +49,8 @@ console.log(assignGrade(55)); // "F"
 // The function should return the truncated string with a "..." ending.
 // Note that the three dots at the end add to the string length.
 
-function truncateString(str, b) {
-  const result = str.substring(0, b - 3);
+function truncateString(str, characterNumber) {
+  const result = str.substring(0, characterNumber - 3);
   return result + "...";
 }
 
@@ -238,23 +238,23 @@ console.log(checkSign("green")); // "Go"
 // based on the input parameters.
 
 function suggestMeal(time, diet) {
-    if (time === "morning" && diet === "vegan") {
-        return "Fruit smoothie with oats"
-    } else if (time === "morning" && diet === "vegetarian") {
-        return "Vegetarian scrambled eggs with toast";
-    } else if (time === "morning" && diet === "omnivore") {
-        return "Bacon and eggs with toast";
-    } else if (time === "afternoon" && diet === "vegan") {
-        return "Vegan burrito";
-    } else if (time === "afternoon" && diet === "vegetarian") {
-        return "Vegetarian pizza";
-    } else if ( time === "afternoon" && diet === "omnivore") {
-        return "Chicken sandwich"
-    } else if (time === "evening" && diet === "vegan") {
-        return "Vegan lentil stew";
-    } else {
-        return time, diet;
-    }
+  if (time === "morning" && diet === "vegan") {
+    return "Fruit smoothie with oats";
+  } else if (time === "morning" && diet === "vegetarian") {
+    return "Vegetarian scrambled eggs with toast";
+  } else if (time === "morning" && diet === "omnivore") {
+    return "Bacon and eggs with toast";
+  } else if (time === "afternoon" && diet === "vegan") {
+    return "Vegan burrito";
+  } else if (time === "afternoon" && diet === "vegetarian") {
+    return "Vegetarian pizza";
+  } else if (time === "afternoon" && diet === "omnivore") {
+    return "Chicken sandwich";
+  } else if (time === "evening" && diet === "vegan") {
+    return "Vegan lentil stew";
+  } else {
+    return time, diet;
+  }
 }
 
 // Usage examples:
