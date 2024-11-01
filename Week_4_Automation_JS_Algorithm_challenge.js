@@ -107,10 +107,11 @@ console.log(sumNumbers([-1, -2, -3, -4, -5])); // -15
 const factorial = (factNumber) => {
   let result = 1;
   for (let i = 2; i <= factNumber; i++) {
-    result = result * i;
-    return result;
+    result *= i;
   }
+  return result;
 };
+
 
 // Usage examples:
 console.log("----------------------------");
@@ -212,7 +213,7 @@ const palindrome = (strForCheck) => {
 console.log("----------------------------");
 console.log("Challenge 10: 'Palindrome Checker'");
 console.log("----------------------------");
-console.log(palindrome("Racecar")); // true
+console.log(palindrome("racecar")); // true
 console.log(palindrome("hello")); // false
 console.log(palindrome("a")); // true
 console.log(palindrome("madam")); // true
