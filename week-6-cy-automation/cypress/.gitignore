@@ -1,0 +1,13 @@
+# Ignore Mac system files
+.DS_store
+
+# Ignore node_modules folder
+node_modules
+
+# Ignore node_modules folder
+1-getting-started
+
+# Ignore node_modules folder
+2-advanced-examples
+fixtures
+support
