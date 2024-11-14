@@ -155,16 +155,15 @@ console.log(findLongestSubstringWithoutRepeats("pwwkew")); // 3 ("wke")
 // Write a function that checks if all elements in an array are unique.
 
 const areAllElementsUnique = (arrayCheck) => {
-
-    for (let i = 0; i < arrayCheck.length; i++) {
-        for (let j = i + 1; j < arrayCheck.length; j++) {
-          if (arrayCheck[i] === arrayCheck[j]) {
-            return false;
-          }
-        }
+  for (let i = 0; i < arrayCheck.length; i++) {
+    for (let j = i + 1; j < arrayCheck.length; j++) {
+      if (arrayCheck[i] === arrayCheck[j]) {
+        return false;
       }
-      // If no duplicates are found, return true
-      return true;
+    }
+  }
+  // If no duplicates are found, return true
+  return true;
 };
 
 // Usage examples:
@@ -179,31 +178,29 @@ console.log(areAllElementsUnique([10, 20, 30, 40, 50])); // true
 // Write a function that finds the most frequent element in an array.
 
 const findMostFrequentElement = (arrayOfNum) => {
-  let resultSymbol = 0
-  let maxCount = 0
-  let count = 0
+  let resultSymbol = 0;
+  let maxCount = 0;
+  let count = 0;
 
   for (let i = 0; i < arrayOfNum.length; i++) {
-    let count = 0
+    let count = 0;
     for (let j = 0; j < arrayOfNum.length; j++) {
-
-
-      if(arrayOfNum[j] === arrayOfNum[i]) {
-        count++
+      if (arrayOfNum[j] === arrayOfNum[i]) {
+        count++;
       }
 
-      if(count > maxCount) {
-        maxCount = count
-        resultSymbol = arrayOfNum[i]
+      if (count > maxCount) {
+        maxCount = count;
+        resultSymbol = arrayOfNum[i];
       }
     }
   }
-  return resultSymbol
-}
+  return resultSymbol;
+};
 
 // Usage examples:
 console.log("----------------------------");
-console.log("Challenge 8: Find the Most Frequent Element");
+console.log("Challenge 8: 'Find the Most Frequent Element'");
 console.log("----------------------------");
 console.log(findMostFrequentElement([1, 2, 3, 2, 4, 2])); // 2
 console.log(findMostFrequentElement(["a", "b", "c", "b", "b"])); // "b"
@@ -211,14 +208,52 @@ console.log(findMostFrequentElement([5, 5, 5, 6, 6, 7])); // 5
 
 // Challenge 9: Find the Intersection of Two Arrays
 // Write a function that takes two arrays and returns an array that is the intersection of the two arrays.
+
+const findIntersection = (arra1, arra2) => {
+  let result = [];
+
+  for (let i = 0; i < arra1.length; i++) {
+    for (let j = 0; j < arra2.length; j++) {
+      if (arra1[i] === arra2[j]){
+        result.push(arra1[i])
+      }
+    }
+  }
+    return result
+  }
+
 // Usage examples:
-// console.log(findIntersection([1, 2, 3], [3, 4, 5])); // [3]
-// console.log(findIntersection(["a", "b", "c"], ["b", "c", "d"])); // ["b", "c"]
-// console.log(findIntersection([10, 20, 30], [40, 50, 60])); // []
+console.log("----------------------------");
+console.log("Challenge 9: 'Find the Intersection of Two Arrays'");
+console.log("----------------------------");
+console.log(findIntersection([1, 2, 3], [3, 4, 5])); // [3]
+console.log(findIntersection(["a", "b", "c"], ["b", "c", "d"])); // ["b", "c"]
+console.log(findIntersection([10, 20, 30], [40, 50, 60])); // []
 
 // Challenge 10: Merge Two Arrays
 // Write a function that takes two arrays and merges them into one.
+
+const mergeArrays = (firstArray, secondArray) => {
+  let result = []
+
+  for (let i = 0; i < firstArray.length; i++) {
+    result.push(firstArray[i])
+  }
+  for (let j = 0; j < secondArray.length; j++) {
+    result.push(secondArray[j])
+  }
+  return result
+}
+// OR
+
+// const mergeArrays = (firstArray, secondArray) => {
+//   return [...firstArray, ...secondArray];
+// };
+
 // Usage examples:
-// console.log(mergeArrays([1, 2, 3], [4, 5, 6])); // [1, 2, 3, 4, 5, 6]
-// console.log(mergeArrays(["a", "b", "c"], ["d", "e", "f"])); // ["a", "b", "c", "d", "e", "f"]
-// console.log(mergeArrays([10, 20, 30], [40, 50, 60])); // [10, 20, 30, 40, 50, 60]
+console.log("----------------------------");
+console.log("Challenge 10: 'Merge Two Arrays'");
+console.log("----------------------------");
+console.log(mergeArrays([1, 2, 3], [4, 5, 6])); // [1, 2, 3, 4, 5, 6]
+console.log(mergeArrays(["a", "b", "c"], ["d", "e", "f"])); // ["a", "b", "c", "d", "e", "f"]
+console.log(mergeArrays([10, 20, 30], [40, 50, 60])); // [10, 20, 30, 40, 50, 60]
