@@ -24,11 +24,12 @@ describe("Search by different data", () => {
   });
 
   it("Search by keyword", () => {
-
+    // Write search word in input field and click search button
     searchPage.inputFieldSearch.click();
     searchPage.inputFieldSearch.type("Martislut");
     searchPage.buttonSearch.click();
 
+    // Check that listing include search word
     cy.get('[class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 css-b7x1vi"] h5')
       .invoke("text")
       .should("eq", "Property for Test DK");
@@ -36,12 +37,13 @@ describe("Search by different data", () => {
 
   it("Search by number of bedrooms(2)", () => {
 
+    // Start search by number of bedrooms
     searchPage.inputFieldSearch.click();
     searchPage.dropDownBedroomsNumber.click();
     searchPage.dropDownBedroomsOption2.click();
     searchPage.buttonSearch.click();
 
-
+    // Collect bedrooms number for the listing
     searchPage.itemsInSearchList.each(($el) => {
       cy.wrap($el)
         .invoke("text")
@@ -53,6 +55,7 @@ describe("Search by different data", () => {
         });
     });
 
+    // Check value os bedrooms for every listing is bigger that searched
     cy.then(() => {
       bedrooms.forEach((element) => {
         expect(element).to.be.at.least(2);
@@ -62,11 +65,13 @@ describe("Search by different data", () => {
 
   it("Search by the City", () => {
 
+    // Start search by the city
     searchPage.inputFieldSearch.click();
     searchPage.searchFieldCity.click()
     searchPage.searchFieldCity.type('Kyiv')
     searchPage.buttonSearch.click();
 
+    // Check that searching city is present in listing
     cy.get('[class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 css-1na5d0x"]')
       .invoke("text")
       .then((text) => {
@@ -79,11 +84,16 @@ describe("Search by different data", () => {
 
   it("Search by the Price", () => {
 
+    // Visit require price range
     cy.visit(`${data.baseUrl}/featured-listings?price=1400000-1600000`)
 
+    // Check that our listing is present in range of price
     cy.get('[class*="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"] [class="MuiBox-root css-79elbk"]').invoke('text')
     .then((text) => {
       expect(text).to.include("$ 1,500,000")
+    })
+    cy.get('[class="MuiCardContent-root css-lmipfk"]').invoke('text').then((text) => {
+      expect(text).to.include("City: Lake Forest");
     })
   })
 });
