@@ -1,4 +1,3 @@
-/// <reference types="Cypress" />
 import { fa, faker } from "@faker-js/faker";
 import homePage from "../page.objects/home.page";
 import registrationPage from "../page.objects/registration.page";

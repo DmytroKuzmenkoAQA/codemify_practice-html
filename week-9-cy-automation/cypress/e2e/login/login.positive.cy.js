@@ -1,5 +1,3 @@
-/// <reference types="Cypress" />
-
 import loginPage from "../page.objects/login.page"
 
 import dashboardPage from "../page.objects/dashboard.page"
