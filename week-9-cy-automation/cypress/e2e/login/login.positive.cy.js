@@ -8,9 +8,6 @@ import homePage from "../page.objects/home.page";
 
 import data from "../../fixtures/data.json"
 
-// const email = "123456789test@yopmail.com";
-// const password = "!Qweqwe1";
-
 let user
 
 describe('Login positive', () => {

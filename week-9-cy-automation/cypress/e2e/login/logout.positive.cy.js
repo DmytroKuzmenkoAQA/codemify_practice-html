@@ -4,27 +4,25 @@ import dashboardPage from "../page.objects/dashboard.page";
 
 import homePage from "../page.objects/home.page";
 
-import data from "../../fixtures/data.json"
+import data from "../../fixtures/data.json";
 
-let user
+let user;
 
 describe("Logout positive", () => {
-
   before(() => {
-    cy.fixture('data.json').then((data) => {
-      user = data
-    })
-  })
-
-  beforeEach(() => {
-    cy.visit(data.baseUrl);
+    cy.request("POST", "https://dev.delekhomes.com/api/users/login", {
+      email: "123456789test@yopmail.com",
+      password: "!Qweqwe1",
+    }).then((response) => {
+      expect(response.status).to.be.eq(201);
+      cy.log(response.body.accessToken);
+      window.localStorage.setItem("accessToken", response.body.accessToken);
+    });
   });
 
   it("User log out", () => {
     // After succesfull login user on profile page
-    cy.waitForStableDOM({ pollInterval: 1000, timeout: 10000 })
-    homePage.LogInBtn.click()
-    loginPage.logingIn(data.email, data.password);
+    cy.visit("https://dev.delekhomes.com/dashboard");
 
     dashboardPage.userIcon.click();
     dashboardPage.logOutBtn.click();

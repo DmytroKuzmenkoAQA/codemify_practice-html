@@ -84,6 +84,7 @@ describe("Search by different data", () => {
     cy.get('[class*="MuiPaper-root MuiPaper-elevation MuiPaper-ro"] p').should("include.text","DK TEST");
     cy.get('[class*="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8 MuiGrid-grid-sm"] p ').should("include.text", "23333 Test");
     cy.get('[class*="MuiBox-root css-px"]').invoke("text").should("eq", "Martislut");
+    
   });
 
   it("Search by the Price", () => {

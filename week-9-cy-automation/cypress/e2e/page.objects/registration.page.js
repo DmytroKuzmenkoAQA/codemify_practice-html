@@ -39,12 +39,7 @@ class RegistrationPage {
     );
   }
 
-  accountRegistration(
-    firstName = "Dmytro",
-    lastName = "Kuzmenko",
-    email,
-    password = "!Qweqwe1"
-  ) {
+  accountRegistration(firstName, lastName, email, password) { 
     this.firstNameInput.type(firstName)
     this.lastNameInput.type(lastName);
     this.emailInput.type(email);

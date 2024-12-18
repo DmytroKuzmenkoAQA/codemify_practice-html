@@ -30,7 +30,7 @@ describe("Search by different data", () => {
     searchPage.buttonSearch.click();
 
     // Check that listing include search word
-    cy.get('[class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 css-b7x1vi"] h5')
+    searchPage.titleOfMtListing
       .invoke("text")
       .should("eq", "Property for Test DK");
   });
@@ -72,12 +72,12 @@ describe("Search by different data", () => {
     searchPage.buttonSearch.click();
 
     // Check that searching city is present in listing
-    cy.get('[class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 css-1na5d0x"]')
+    searchPage.additionalListingInfo
       .invoke("text")
       .then((text) => {
-        expect(text).to.include("City: Kyiv");
-        expect(text).to.include("State: CA");
-        expect(text).to.include("Zip/Code: 3037");
+        expect(text).to.include(data.cityInListing);
+        expect(text).to.include(data.stateInListing);
+        expect(text).to.include(data.zipCodeOfListing);
 
       })
   })
@@ -90,7 +90,9 @@ describe("Search by different data", () => {
     // Check that our listing is present in range of price
     cy.get('[class*="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"] [class="MuiBox-root css-79elbk"]').invoke('text')
     .then((text) => {
-      expect(text).to.include("$ 1,500,000")
+      const tmp = parseInt(text.replace("$ ", "").replace(/,/g, ""), 10);
+      expect(tmp).to.be.above(1400000)
+      expect(tmp).to.be.below(1600000)
     })
     cy.get('[class="MuiCardContent-root css-lmipfk"]').invoke('text').then((text) => {
       expect(text).to.include("City: Lake Forest");

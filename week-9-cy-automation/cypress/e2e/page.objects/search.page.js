@@ -18,6 +18,10 @@ class searchPage {
 
     get itemsInSearchList() {return cy.get(".MuiCard-root")}
 
+    get titleOfMtListing() {return cy.get('[class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 css-b7x1vi"] h5')}
+
+    get additionalListingInfo() {return cy.get('[class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 css-1na5d0x"]')}
+
 }
 
 export default new searchPage()
