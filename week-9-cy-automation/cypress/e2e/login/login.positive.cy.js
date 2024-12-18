@@ -1,29 +1,35 @@
-/// <reference types="Cypress" />
-
 import loginPage from "../page.objects/login.page"
 
 import dashboardPage from "../page.objects/dashboard.page"
 
 import homePage from "../page.objects/home.page";
 
-const email = "123456789test@yopmail.com";
-const password = "!Qweqwe1";
+import data from "../../fixtures/data.json"
+
+let user
 
 describe('Login positive', () => {
-    beforeEach(() => {
-      cy.visit('/')
+
+  before(() => {
+    cy.fixture('data.json').then((data) => {
+      user = data
+    })
+  })
+  
+  beforeEach(() => {
+      cy.visit(data.baseUrl)
     })
   
     it('User log in', () => {
       // Fill out the field and log in
       homePage.LogInBtn.click()
-      loginPage.emailInput.type(email)
-      loginPage.passwordInput.type(password)
+      loginPage.emailInput.type(data.email)
+      loginPage.passwordInput.type(data.password)
       loginPage.logInBtn.click()
 
       // Check that user loged in succesfully
       dashboardPage.roleLbl.should('have.text', 'role: user')
       cy.title().should('eq', 'User: Profile | Delek Homes')
-      dashboardPage.userName.should('have.text', 'dk  test')
+      dashboardPage.userName.should('have.text', 'Dmytro  Kuzmenko')
     })
 })
