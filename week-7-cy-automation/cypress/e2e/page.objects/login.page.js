@@ -18,4 +18,6 @@ class LoginPage {
   }
 }
 
+//test change for trigger
+
 export default new LoginPage();
