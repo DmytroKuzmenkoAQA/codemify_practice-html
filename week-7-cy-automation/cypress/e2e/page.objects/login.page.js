@@ -1,5 +1,4 @@
 class LoginPage {
-
   get emailInput() {
     return cy.get('[name="email"]');
   }
@@ -11,13 +10,10 @@ class LoginPage {
   }
 
   logingIn(email, password) {
-
     this.emailInput.type(email);
     this.passwordInput.type(password);
     this.logInBtn.click();
   }
 }
-
-//test change for trigger
 
 export default new LoginPage();
