@@ -22,6 +22,6 @@ describe('Login positive', () => {
       // Check that user loged in succesfully
       dashboardPage.roleLbl.should('have.text', 'role: user')
       cy.title().should('eq', 'User: Profile | Delek Homes')
-      dashboardPage.userName.should('have.text', 'dk  test')
+      dashboardPage.userName.should('have.text', 'Dmytro  Kuzmenko')
     })
 })
