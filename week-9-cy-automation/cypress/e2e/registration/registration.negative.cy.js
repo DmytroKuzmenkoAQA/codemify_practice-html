@@ -1,4 +1,3 @@
-import { faker } from "@faker-js/faker";
 import registrationPage from "../page.objects/registration.page";
 import homePage from "../page.objects/home.page";
 import data from "../../fixtures/data.json"
