@@ -1,0 +1,6 @@
+{
+    "errorNameInput": "First name required",
+    "errorLastNameInput": "Last name required",
+    "errorEmailInput": "Email is required",
+    "errorPasswordInput": "Password is required"
+}
