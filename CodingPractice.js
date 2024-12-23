@@ -267,4 +267,3 @@ Write a function filterGreater(arr, threshold) that takes an array and a number,
 // }
 
 // console.log(checkVowels("Hi everyone I am going to be named my son Rostam Ali"));
-

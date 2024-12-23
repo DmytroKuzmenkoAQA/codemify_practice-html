@@ -7,7 +7,7 @@ import dashboardPage from "../page.objects/dashboard.page";
 import homePage from "../page.objects/home.page";
 
 import PrivateSearchPage from "../page.objects/private.practice.search.page";
-import data from "../../fixtures/data.json"
+import data from "../../fixtures/test.data.json"
 
 
 let user
@@ -18,7 +18,7 @@ let earliestDate = null;
 describe("Search bedrooms", () => {
 
   before(() => {
-    cy.fixture('data.json').then((data) => {
+    cy.fixture('test.data.json').then((data) => {
       user = data
     })
   })

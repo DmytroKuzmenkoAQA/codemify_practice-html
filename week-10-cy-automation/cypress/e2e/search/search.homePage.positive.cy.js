@@ -1,5 +1,5 @@
 import searchPage from "../page.objects/search.page";
-import data from "../../fixtures/data.json"
+import data from "../../fixtures/test.data.json"
 
 let user
 let bedrooms = [];
@@ -7,7 +7,7 @@ let bedrooms = [];
 describe("Search by different data", () => {
 
   before(() => {
-    cy.fixture("data.json").then((data) => {
+    cy.fixture("test.data.json").then((data) => {
       user = data;
     });
   });

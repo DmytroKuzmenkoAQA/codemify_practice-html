@@ -1,6 +1,6 @@
 class searchPage {
 
-    get inputFieldSearch() { return cy.get('[id=":r1:"]')}    
+    get inputFieldSearch() { return cy.get('[class*="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-t"] [class*="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary"]')}    
 
     get searchfieldBadroomsDropDown() { return cy.get('[class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-o0rlmm"] [variant="outlined"]')};
 

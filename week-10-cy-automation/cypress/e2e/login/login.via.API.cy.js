@@ -1,4 +1,4 @@
-import data from "../../fixtures/data.json"
+import data from "../../fixtures/test.data.json"
 
 
 describe("Login Api Test", () => {

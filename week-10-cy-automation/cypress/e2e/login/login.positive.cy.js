@@ -4,14 +4,14 @@ import dashboardPage from "../page.objects/dashboard.page"
 
 import homePage from "../page.objects/home.page";
 
-import data from "../../fixtures/data.json"
+import data from "../../fixtures/test.data.json"
 
 let user
 
 describe('Login positive', () => {
 
   before(() => {
-    cy.fixture('data.json').then((data) => {
+    cy.fixture('test.data.json').then((data) => {
       user = data
     })
   })
@@ -28,7 +28,7 @@ describe('Login positive', () => {
       loginPage.logInBtn.click()
 
       // Check that user loged in succesfully
-      dashboardPage.roleLbl.should('have.text', 'role: user')
+      dashboardPage.roleLbl.should('have.text', 'role: admin')
       cy.title().should('eq', 'User: Profile | Delek Homes')
       dashboardPage.userName.should('have.text', 'Dmytro  Kuzmenko')
     })

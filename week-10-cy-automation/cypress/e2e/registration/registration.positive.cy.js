@@ -2,7 +2,7 @@ import { fa, faker } from "@faker-js/faker";
 import homePage from "../page.objects/home.page";
 import registrationPage from "../page.objects/registration.page";
 import dashboardPage from "../page.objects/dashboard.page";
-import data from "../../fixtures/data.json";
+import data from "../../fixtures/test.data.json";
 
 let user
 
@@ -15,7 +15,7 @@ const userData = {
 
 describe("Registration new user", () => {
   before(() => {
-    cy.fixture("data.json").then((data) => {
+    cy.fixture("test.data.json").then((data) => {
       user = data;
     });
   });
