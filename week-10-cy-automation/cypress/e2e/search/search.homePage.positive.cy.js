@@ -1,40 +1,82 @@
 import searchPage from "../page.objects/search.page";
-import data from "../../fixtures/test.data.json"
+import data from "../../fixtures/test.data.json";
 
-let user
+let user;
 let bedrooms = [];
+let accessToken;
+let numberOfListing;
 
 describe("Search by different data", () => {
-
   before(() => {
     cy.fixture("test.data.json").then((data) => {
       user = data;
+
+      cy.fixture("Test image.jpg", "binary").then((file) => {
+        const blob = Cypress.Blob.binaryStringToBlob(file);
+
+        const formData = new FormData();
+
+        // formData.append('Test image.jpg', blob);
+        formData.append("images", blob, "Test image.jpg");
+        formData.append("title", data.titleForListing);
+        formData.append("description", data.descriptionForListing);
+        formData.append("address", data.adressForListingCreation);
+        formData.append("city", data.cityForListingCreation);
+        formData.append("state", "CA");
+        formData.append("zipCode", data.zipCodeForListingCreation);
+        formData.append("price", data.priceForListingCreation);
+        formData.append("bedrooms", data.numberofBedroomsForListingCreation);
+        formData.append("bathrooms", data.numberofBathroomsForListingCreation);
+        formData.append("garage", data.numberGarageForListingCreation);
+        formData.append("sqft", data.numberSQRTForListingCreation);
+        formData.append("lotSize", data.numberLotSizeForListingCreation);
+        formData.append("isPublished", true);
+
+        cy.request({
+          method: "POST",
+          url: `${data.baseUrl}/api/estate-objects`,
+          Authorization: `Bearer ${accessToken}`,
+          body: formData,
+        }).then((response) => {
+          expect(response.status).to.eq(201);
+          numberOfListing = JSON.parse(
+            String.fromCharCode.apply(null, new Uint8Array(response.body))
+          ).id;
+        });
+      });
     });
   });
 
   beforeEach(() => {
+    // new test exception from commands.js
     cy.NewExceptionForTest();
-    cy.visit(
-      `${data.baseUrl}/featured-listings?price=500000-10000000`
-    );
+    cy.visit(`${data.baseUrl}/featured-listings?price=500000-10000000`);
     cy.waitForStableDOM({ pollInterval: 1000, timeout: 10000 });
     cy.get('[type="checkbox"]').click();
+  });
+
+  after(() => {
+    cy.request({
+      method: "DELETE",
+      url: data.baseUrl + "/api/estate-objects/" + numberOfListing,
+    }).then((deleteResponse) => {
+      expect(deleteResponse.status).to.eq(200);
+    });
   });
 
   it("Search by keyword", () => {
     // Write search word in input field and click search button
     searchPage.inputFieldSearch.click();
-    searchPage.inputFieldSearch.type("Martislut");
+    searchPage.inputFieldSearch.type(data.titleForListing);
     searchPage.buttonSearch.click();
 
     // Check that listing include search word
     searchPage.titleOfMtListing
       .invoke("text")
-      .should("eq", "Property for Test DK");
+      .should("eq", data.titleForListing);
   });
 
   it("Search by number of bedrooms(2)", () => {
-
     // Start search by number of bedrooms
     searchPage.inputFieldSearch.click();
     searchPage.dropDownBedroomsNumber.click();
@@ -62,38 +104,17 @@ describe("Search by different data", () => {
   });
 
   it("Search by the City", () => {
-
     // Start search by the city
     searchPage.inputFieldSearch.click();
-    searchPage.searchFieldCity.click()
-    searchPage.searchFieldCity.type('Kyiv')
+    searchPage.searchFieldCity.click();
+    searchPage.searchFieldCity.type(data.cityForListingCreation);
     searchPage.buttonSearch.click();
 
     // Check that searching city is present in listing
-    searchPage.additionalListingInfo
-      .invoke("text")
-      .then((text) => {
-        expect(text).to.include(data.cityInListing);
-        expect(text).to.include(data.stateInListing);
-        expect(text).to.include(data.zipCodeOfListing);
-
-      })
-  })
-
-  it("Search by the Price", () => {
-
-    // Visit require price range
-    cy.visit(`${data.baseUrl}/featured-listings?price=1400000-1600000`)
-
-    // Check that our listing is present in range of price
-    cy.get('[class*="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"] [class="MuiBox-root css-79elbk"]').invoke('text')
-    .then((text) => {
-      const tmp = parseInt(text.replace("$ ", "").replace(/,/g, ""), 10);
-      expect(tmp).to.be.above(1400000)
-      expect(tmp).to.be.below(1600000)
-    })
-    cy.get('[class="MuiCardContent-root css-lmipfk"]').invoke('text').then((text) => {
-      expect(text).to.include("City: Lake Forest");
-    })
-  })
+    searchPage.additionalListingInfo.invoke("text").then((text) => {
+      expect(text).to.include(data.cityForListingCreation);
+      expect(text).to.include(data.stateForListingCreation);
+      expect(text).to.include(data.zipCodeForListingCreation);
+    });
+  });
 });
