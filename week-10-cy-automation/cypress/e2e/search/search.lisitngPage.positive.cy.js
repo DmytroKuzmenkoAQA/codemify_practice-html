@@ -3,51 +3,62 @@
 import searchPage from "../page.objects/search.page";
 import data from "../../fixtures/test.data.json";
 
-let user;
 let bedrooms = [];
 let accessToken;
 let numberOfListing;
 
 describe("Search by different data", () => {
   before(() => {
-    cy.fixture("test.data.json").then((data) => {
-      user = data;
+    // Login request to fetch access token
+    cy.request('POST', "https://dev.delekhomes.com/api/users/login", {
+      email: "123456789test@yopmail.com",
+      password: "!Qweqwe1",
+    }).then((response) => {
+      expect(response.status).to.eq(201);
+      cy.log('Access Token:', response.body.accessToken);
+      accessToken = response.body.accessToken; // Store the access token
     });
-
-    cy.fixture("Test image.jpg", "binary").then((file) => {
-      const blob = Cypress.Blob.binaryStringToBlob(file);
-
-      const formData = new FormData();
-
-      // formData.append('Test image.jpg', blob);
-      formData.append("images", blob, "Test image.jpg");
-      formData.append("title", data.titleForListing);
-      formData.append("description", data.descriptionForListing);
-      formData.append("address", data.adressForListingCreation);
-      formData.append("city", data.cityForListingCreation);
-      formData.append("state", data.stateForListingCreation);
-      formData.append("zipCode", data.zipCodeForListingCreation);
-      formData.append("price", data.priceForListingCreation);
-      formData.append("bedrooms", data.numberofBedroomsForListingCreation);
-      formData.append("bathrooms", data.numberofBathroomsForListingCreation);
-      formData.append("garage", data.numberGarageForListingCreation);
-      formData.append("sqft", data.numberSQRTForListingCreation);
-      formData.append("lotSize", data.numberLotSizeForListingCreation);
-      formData.append("isPublished", true);
-
-      cy.request({
-        method: "POST",
-        url: `${data.baseUrl}/api/estate-objects`,
-        Authorization: `Bearer ${accessToken}`,
-        body: formData,
-      }).then((response) => {
-        expect(response.status).to.eq(201);
-        numberOfListing = JSON.parse(
-          String.fromCharCode.apply(null, new Uint8Array(response.body))
-        ).id;
+  
+    // Ensure fixture data is loaded before proceeding
+    cy.fixture("test.data.json").then((data) => {
+      cy.fixture("Test image.jpg", "binary").then((file) => {
+        const blob = Cypress.Blob.binaryStringToBlob(file);
+        const formData = new FormData();
+  
+        // Append form data
+        formData.append("images", blob, "Test image.jpg");
+        formData.append("title", data.titleForListing);
+        formData.append("description", data.descriptionForListing);
+        formData.append("address", data.adressForListingCreation);
+        formData.append("city", data.cityForListingCreation);
+        formData.append("state", data.stateForListingCreation);
+        formData.append("zipCode", data.zipCodeForListingCreation);
+        formData.append("price", data.priceForListingCreation);
+        formData.append("bedrooms", data.numberofBedroomsForListingCreation);
+        formData.append("bathrooms", data.numberofBathroomsForListingCreation);
+        formData.append("garage", data.numberGarageForListingCreation);
+        formData.append("sqft", data.numberSQRTForListingCreation);
+        formData.append("lotSize", data.numberLotSizeForListingCreation);
+        formData.append("isPublished", true);
+  
+        // Send POST request to create listing
+        cy.request({
+          method: "POST",
+          url: `${data.baseUrl}/api/estate-objects`,
+          headers: {
+            Authorization: `Bearer ${accessToken}`, // Correctly use the Authorization header
+          },
+          body: formData,
+        }).then((response) => {
+          expect(response.status).to.eq(201);
+          numberOfListing = JSON.parse(
+            String.fromCharCode.apply(null, new Uint8Array(response.body))
+          ).id; // Parse and store the listing ID
+        });
       });
     });
   });
+  
 
   beforeEach(() => {
     // new test exception from commands.js
@@ -125,7 +136,7 @@ describe("Search by different data", () => {
     // Check that searched City is present in Listing
     cy.get('[class*="MuiPaper-root MuiPaper-elevation MuiPaper-ro"] p').should(
       "include.text",
-      "Sergii Khromchenko"
+      "Dmytro Kuzmenko"
     );
     cy.get(
       '[class*="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8 MuiGrid-grid-sm"] p '
