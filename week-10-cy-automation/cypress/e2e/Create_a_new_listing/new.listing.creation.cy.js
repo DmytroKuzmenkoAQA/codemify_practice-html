@@ -8,7 +8,7 @@ let accessToken;
 let numberOfListing;
 
 describe("Creating new Listings", () => {
-  before(() => {
+  beforeEach(() => {
     cy.clearCookies();
     cy.clearLocalStorage();
     // Log in using API request
@@ -46,7 +46,7 @@ describe("Creating new Listings", () => {
       .click()
       .type(data.zipCodeForListingCreation);
     createListingPage.inputFieldState.click({ force: true });
-    createListingPage.dropDownStates.contains("Colorado").click();
+    createListingPage.dropDownStates.contains("California").click();
 
     createListingPage.browseImage.attachFile({
       filePath: "Test image.jpg",
@@ -108,7 +108,7 @@ describe("Creating new Listings", () => {
       const formData = new FormData();
 
       // formData.append('Test image.jpg', blob);
-      formData.append("images", blob, "Test image.jpg");
+      formData.append("images", blob);
       formData.append("title", data.titleForListing);
       formData.append("description", data.descriptionForListing);
       formData.append("address", data.adressForListingCreation);

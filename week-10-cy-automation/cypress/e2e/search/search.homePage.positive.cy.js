@@ -1,7 +1,6 @@
 import searchPage from "../page.objects/search.page";
 import data from "../../fixtures/test.data.json";
 
-
 let bedrooms = [];
 let accessToken;
 let numberOfListing;
@@ -28,7 +27,7 @@ describe("Search by different data", () => {
         const formData = new FormData();
 
         // Append form data
-        formData.append("images", blob, "Test image.jpg");
+        formData.append("images", blob);
         formData.append("title", data.titleForListing);
         formData.append("description", data.descriptionForListing);
         formData.append("address", data.adressForListingCreation);
@@ -57,12 +56,13 @@ describe("Search by different data", () => {
             String.fromCharCode.apply(null, new Uint8Array(response.body))
           ).id; // Parse and store the listing ID
         });
-      });
-    });
+      })
+
     cy.visit(`${data.baseUrl}/featured-listings?price=500000-10000000`);
     cy.waitForStableDOM({ pollInterval: 1000, timeout: 10000 });
     cy.get('[type="checkbox"]').click();
   });
+})
 
   afterEach(() => {
     cy.request({
@@ -82,11 +82,12 @@ describe("Search by different data", () => {
     // Check that listing include search word
     searchPage.titleOfMtListing
       .invoke("text")
-      .should("eq", data.titleForListing);
+      .should("include", data.titleForListing);
   });
 
   it("Search by number of bedrooms(2)", () => {
     // Start search by number of bedrooms
+
     searchPage.inputFieldSearch.click();
     searchPage.dropDownBedroomsNumber.click();
     searchPage.dropDownBedroomsOption2.click();

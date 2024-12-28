@@ -17,6 +17,7 @@ class createListing {
     get inputFieldLotSize() { return cy.get('[name="lotSize"]')}
     get buttonPost() { return cy.get('button[type="submit"]')}
 
+    
 }
 
 export default new createListing();
