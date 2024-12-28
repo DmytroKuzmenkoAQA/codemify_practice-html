@@ -7,7 +7,8 @@ let accessToken;
 let numberOfListing;
 
 describe("Search by different data", () => {
-  before(() => {
+  beforeEach(() => {
+    cy.NewExceptionForTest();
     // Login request to fetch access token
     cy.request('POST', "https://dev.delekhomes.com/api/users/login", {
       email: "123456789test@yopmail.com",
@@ -56,17 +57,12 @@ describe("Search by different data", () => {
         });
       });
     });
-  });
-
-  beforeEach(() => {
-    // new test exception from commands.js
-    cy.NewExceptionForTest();
     cy.visit(`${data.baseUrl}/featured-listings?price=500000-10000000`);
     cy.waitForStableDOM({ pollInterval: 1000, timeout: 10000 });
     cy.get('[type="checkbox"]').click();
   });
 
-  after(() => {
+  afterEach(() => {
     cy.request({
       method: "DELETE",
       url: data.baseUrl + "/api/estate-objects/" + numberOfListing,
