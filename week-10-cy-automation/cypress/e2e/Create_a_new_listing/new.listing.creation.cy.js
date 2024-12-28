@@ -9,6 +9,8 @@ let numberOfListing;
 
 describe("Creating new Listings", () => {
   before(() => {
+    cy.clearCookies();
+    cy.clearLocalStorage();
     // Log in using API request
     cy.request("POST", "https://dev.delekhomes.com/api/users/login", {
       email: data.email,
@@ -124,7 +126,9 @@ describe("Creating new Listings", () => {
       cy.request({
         method: "POST",
         url: `${data.baseUrl}/api/estate-objects`,
-        Authorization: `Bearer ${accessToken}`,
+        headers: {
+          Authorization: `Bearer ${accessToken}`, // Correctly use the Authorization header
+        },
         body: formData,
       }).then((response) => {
         expect(response.status).to.eq(201);

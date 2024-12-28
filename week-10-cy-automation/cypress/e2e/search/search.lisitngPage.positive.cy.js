@@ -10,22 +10,24 @@ let numberOfListing;
 describe("Search by different data", () => {
   beforeEach(() => {
     cy.NewExceptionForTest();
+    cy.clearCookies();
+    cy.clearLocalStorage();
     // Login request to fetch access token
-    cy.request('POST', "https://dev.delekhomes.com/api/users/login", {
+    cy.request("POST", "https://dev.delekhomes.com/api/users/login", {
       email: "123456789test@yopmail.com",
       password: "!Qweqwe1",
     }).then((response) => {
       expect(response.status).to.eq(201);
-      cy.log('Access Token:', response.body.accessToken);
+      cy.log("Access Token:", response.body.accessToken);
       accessToken = response.body.accessToken; // Store the access token
     });
-  
+
     // Ensure fixture data is loaded before proceeding
     cy.fixture("test.data.json").then((data) => {
       cy.fixture("Test image.jpg", "binary").then((file) => {
         const blob = Cypress.Blob.binaryStringToBlob(file);
         const formData = new FormData();
-  
+
         // Append form data
         formData.append("images", blob, "Test image.jpg");
         formData.append("title", data.titleForListing);
@@ -41,7 +43,7 @@ describe("Search by different data", () => {
         formData.append("sqft", data.numberSQRTForListingCreation);
         formData.append("lotSize", data.numberLotSizeForListingCreation);
         formData.append("isPublished", true);
-  
+
         // Send POST request to create listing
         cy.request({
           method: "POST",
