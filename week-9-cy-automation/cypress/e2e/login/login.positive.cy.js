@@ -5,6 +5,8 @@ import dashboardPage from "../page.objects/dashboard.page"
 import homePage from "../page.objects/home.page";
 
 import data from "../../fixtures/data.json"
+import 'cypress-wait-for-stable-dom';
+
 
 let user
 

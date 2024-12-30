@@ -92,7 +92,7 @@ describe("Search by different data", () => {
 
     // Visit Searched page with prive range
     cy.visit(`${data.baseUrl}/featured-listings?price=1400000-1600000`)
-    searchPage.buttonMoreInfo.eq(1).click();
+    searchPage.buttonMoreInfo.eq(4).click();
 
     // Check info for our listing on listing page
     cy.get('[class*="MuiPaper-root MuiPaper-elevation MuiPaper-ro"] p').should("include.text","DK TEST");
