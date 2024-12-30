@@ -4,7 +4,7 @@ class Dashboard {
     get userName() {return cy.get('h6')}
 
 
-    get userIcon() {return cy.get('button [data-testid="PersonIcon"]')}
+    get userIcon() {return cy.get('button [class="MuiAvatar-root MuiAvatar-circular css-inlwhr"]')}
     get logOutBtn() {return cy.contains('Logout')}
     
 

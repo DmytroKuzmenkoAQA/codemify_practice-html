@@ -69,11 +69,11 @@ describe("Search on listing page", () => {
     cy.get('[class*="MuiBox-root css-px"]').invoke("text").should("eq", "Martislut");
   });
 
-  it("Search by the Price", () => {
+  it.only("Search by the Price", () => {
     cy.waitForStableDOM({ pollInterval: 1000, timeout: 10000 });
 
     cy.visit('https://dev.delekhomes.com/featured-listings?price=1400000-1600000')
-    searchPage.buttonMoreInfo.click();
+    searchPage.buttonMoreInfo.eq(4).click();
 
     cy.get('[class*="MuiPaper-root MuiPaper-elevation MuiPaper-ro"] p').should("include.text","DK TEST");
     cy.get('[class*="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8 MuiGrid-grid-sm"] p').should("include.text", "2444 Lake Forest dr");

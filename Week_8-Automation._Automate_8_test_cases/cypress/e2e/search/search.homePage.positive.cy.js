@@ -1,5 +1,3 @@
-/ <reference types="Cypress" />
-
 import searchPage from "../page.objects/search.page";
 
 let bedrooms = [];
