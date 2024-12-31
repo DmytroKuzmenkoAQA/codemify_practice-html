@@ -29,37 +29,37 @@
 // }
 // console.log(result);
 
-// const arr = [
-//   "Dmytro",
-//   "Yliia",
-//   "Sergii",
-//   "Alina",
-//   "Dmytro",
-//   "Dmytro",
-//   "Elizabet",
-// ];
+const arr = [
+  "Dmytro",
+  "Yliia",
+  "Sergii",
+  "Alina",
+  "Dmytro",
+  "Dmytro",
+  "Elizabet",
+];
 
-// const secondArrayforTest = ["Anatolit", "Anton", "Tolyan"]
+const secondArrayforTest = ["Anatolit", "Anton", "Tolyan"]
 
-// const arraTest = (usersArray) => {
-//   const resultObject = {};
-//   usersArray.forEach((name) => {
-//     if (!resultObject.hasOwnProperty(name)) {
-//       resultObject[name] = 1;
-//     } else {
-//       resultObject[name] += 1;
-//     }
-//   });
-//   return resultObject;
-// };
 
-// console.log(arraTest(arr));
-// console.log(arraTest(secondArrayforTest));
+const arraTest = (usersArray) => {
+  const resultObject = {};
+  usersArray.forEach((name) => {
+    if (!resultObject.hasOwnProperty(name)) {
+      resultObject[name] = 1;
+    } else {
+      resultObject[name] += 1;
+    }
+  });
+  return resultObject;
+};
+
+console.log(arraTest(arr));
+console.log(arraTest(secondArrayforTest));
 
 // "Dmytro": 3
 // "Yullia": 1
-
-// const num_of_digits = n => n ? ~~Math.log10(Math.abs(n)) + 1 : 1;
+/ const num_of_digits = n => n ? ~~Math.log10(Math.abs(n)) + 1 : 1;
 
 // console.log(num_of_digits(13124))
 // console.log(num_of_digits(0))
@@ -267,4 +267,3 @@ Write a function filterGreater(arr, threshold) that takes an array and a number,
 // }
 
 // console.log(checkVowels("Hi everyone I am going to be named my son Rostam Ali"));
-
