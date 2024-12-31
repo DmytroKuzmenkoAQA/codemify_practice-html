@@ -1,0 +1,22 @@
+{
+  "baseUrl": "https://dev.delekhomes.com",
+  "firstName": "TestUser1",
+  "LastName": "TestLastName1",
+  "email": "123456789test@yopmail.com",
+  "password": "!Qweqwe1",
+
+  "titleForListing": "TestTitle for first Listing",
+  "descriptionForListing": "Test description for first Listing",
+  "cityForListingCreation": "TestCity",
+  "stateForListingCreation": "CA",
+  "adressForListingCreation": "Test Adress",
+  "zipCodeForListingCreation": "54321",
+  "priceForListingCreation": 5000000,
+  "numberofBedroomsForListingCreation": 2,
+  "numberofBathroomsForListingCreation": 3,
+  "numberGarageForListingCreation": 3,
+  "numberSQRTForListingCreation": 350,
+  "numberLotSizeForListingCreation": 3333
+
+
+}
